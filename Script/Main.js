@@ -79,15 +79,44 @@ function loop() {
 }
 
 function mouseUp(event) {
+    let canvasRect = canvasUI.getBoundingClientRect()
+    let x = event.clientX - canvasRect.left
+    let y = event.clientY - canvasRect.top
+    let button = event.button
 
+    if (scene === 'Title') {
+        mouseUpTitle(x, y, button)
+    } else if (scene === 'Field') {
+        mouseUpField(x, y, button)
+    }
 }
 
 function keyDown(event) {
+    let key = event.key
 
+    if (scene === 'Title') {
+        keyDownTitle(key)
+    } else if (scene === 'Field') {
+        keyDownField(key)
+    }
+
+    if (key === 'ArrowUp' || key === 'ArrowLeft' || key === 'ArrowDown' || key === 'ArrowRight' || key === 'Space' || key === 'Enter') {
+        event.preventDefault()
+    }
 }
 
 function keyUp(event) {
-    
+    let key = event.key
+
+    if (scene === 'Title') {
+        keyUpTitle(key)
+    } else if (scene === 'Field') {
+        keyUpField(key)
+    }
+
+    if (key === 'ArrowUp' || key === 'ArrowLeft' || key === 'ArrowDown' || key === 'ArrowRight' || key === 'Space' || key === 'Enter') {
+        event.preventDefault()
+    }
 }
 
 function errorHandle(err, url, line, col, obj) {
