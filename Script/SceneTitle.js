@@ -43,7 +43,7 @@ function keyUpTitle(key) {
                     state = ''
                     selected.title = 0
                 } else if (selected.title === 1) {
-                    selected.title = 0
+                    eraseData()
                 }
             }
         }
@@ -60,6 +60,8 @@ function mouseUpTitle(x, y, button) {
                     scene = 'Field'
                     state = ''
                     selected.title = 0
+                } else if (pointInsideRectArray(x, y, UI.title.buttonErase)) {
+                    eraseData()
                 }
             }
         }

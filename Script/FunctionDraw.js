@@ -14,3 +14,11 @@ function fitViewport(coord) {
 
     return coord
 }
+
+function drawPlane() {
+
+}
+
+function drawCuboid() {
+
+}
