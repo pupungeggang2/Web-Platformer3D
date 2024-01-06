@@ -4,6 +4,7 @@ function drawSceneUIInit() {
     contextUI.textBaseline = 'top'
     contextUI.strokeStyle = 'Black'
     contextUI.fillStyle = 'Black'
+    contextUI.lineWidth = 2
 
     contextUI.clearRect(0, 0, 1280, 720)
 }

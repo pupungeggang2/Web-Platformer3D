@@ -90,3 +90,26 @@ function mat4Scale(x, y, z) {
         0, 0, 0, 1
     ]
 }
+
+function mat4vec4Mul(mat, vec) {
+    return [
+        mat[0] * vec[0] + mat[1] * vec[1] + mat[2] * vec[2] + mat[3] * vec[3],
+        mat[4] * vec[0] + mat[5] * vec[1] + mat[6] * vec[2] + mat[7] * vec[3],
+        mat[8] * vec[0] + mat[9] * vec[1] + mat[10] * vec[2] + mat[11] * vec[3],
+        mat[12] * vec[0] + mat[13] * vec[1] + mat[14] * vec[2] + mat[15] * vec[3]
+    ]
+}
+
+function mat4View(l, r, d, u, n, f) {
+    return [
+        2 / (r - l), 0, 0, -(r + l) / (r - l),
+        0, 2 / (u - d), 0, -(u + d) / (u - d),
+        0, 0, -2 / (f - n), -(f + n) / (f - n),
+        0, 0, 0, 1
+    ]
+}
+
+function applyTransform(mat, vec) {
+    let coordHomo = mat4vec4Mul(mat, [vec[0], vec[1], vec[2], 1])
+    return [coordHomo[0] / coordHomo[3], coordHomo[1] / coordHomo[3], coordHomo[2] / coordHomo[3]]
+}

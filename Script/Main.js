@@ -63,10 +63,18 @@ function glInit() {
     let coord = gl.getAttribLocation(shaderProgram, 'a_position')
     gl.vertexAttribPointer(coord, 3, gl.FLOAT, false, 0, 0)
     gl.enableVertexAttribArray(coord)
+
+    matrixWorldRotate = mat4Identity()
+    matrixWorldRotate = mat4Mul(mat4Rotate(0, 45), matrixWorldRotate)
+    matrixWorldTranslate = mat4Identity()
+    matrixWorld = mat4Mul(matrixWorldTranslate, matrixWorldRotate)
+    //viewMatrix = mat4View(-2, 2, -2, 2, -2, 2)
+    //viewMatrix = mat4Mul(mat4Rotate(0, -45), viewMatrix)
 }
 
 function loop() {
     gameFrameCurrent = Date.now()
+    delta = gameFrameCurrent - gameFramePrevious
 
     if (scene === 'Title') {
         loopTitle()
