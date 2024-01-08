@@ -1,6 +1,7 @@
 function loopField() {
     if (pause === false) {
         movePlayer()
+        cameraAdjust()
     }
 
     displayField()

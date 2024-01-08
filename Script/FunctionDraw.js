@@ -19,7 +19,7 @@ function fitViewport(coord) {
     return coord
 }
 
-function convertDataToCuboid(l, r, d, u, n, f) {
+function convertDataToCuboid(l, r, d, u, f, n) {
     return [[l, d, f], [r, d, f], [r, u, f], [l, u, f], [l, d, n], [r, d, n], [r, u, n], [l, u, n]]
 }
 

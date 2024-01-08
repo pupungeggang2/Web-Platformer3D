@@ -50,6 +50,17 @@ let fieldDisplay = {
     thing : [],
 }
 
+let camera = {
+    left : -1,
+    right : 1,
+    down : -1,
+    up : 1,
+    far : -1,
+    near : 100,
+    translate : [0, 0, 0],
+    rotate : [-45, 0, 0]
+}
+
 let field = {
     thing : [
         {'Color' : [0.5, 1.0, 0.5, 1.0], 'CuboidData' : [-0.5, 0.5, -0.5, -0.3, -0.5, 0.5]}

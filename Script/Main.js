@@ -65,11 +65,10 @@ function glInit() {
     gl.enableVertexAttribArray(coord)
 
     matrixWorldRotate = mat4Identity()
-    matrixWorldRotate = mat4Mul(mat4Rotate(0, 45), matrixWorldRotate)
-    matrixWorldTranslate = mat4Identity()
+    matrixWorldTranslate = mat4Rotate(0, 45)
     matrixWorld = mat4Mul(matrixWorldTranslate, matrixWorldRotate)
-    //viewMatrix = mat4View(-2, 2, -2, 2, -2, 2)
-    //viewMatrix = mat4Mul(mat4Rotate(0, -45), viewMatrix)
+
+    viewMatrix = mat4View(camera.left, camera.right, camera.down, camera.up, camera.far, camera.near)
 }
 
 function loop() {
