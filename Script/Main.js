@@ -66,9 +66,7 @@ function glInit() {
 
     matrixWorldRotate = mat4Identity()
     matrixWorldTranslate = mat4Rotate(0, 45)
-    matrixWorld = mat4Mul(matrixWorldTranslate, matrixWorldRotate)
-
-    viewMatrix = mat4View(camera.left, camera.right, camera.down, camera.up, camera.far, camera.near)
+    matrixWorld = mat4Mul(matrixWorldRotate, matrixWorldTranslate)
 }
 
 function loop() {

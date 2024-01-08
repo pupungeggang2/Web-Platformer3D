@@ -40,5 +40,5 @@ function movePlayer() {
 function cameraAdjust() {
     matrixWorldRotate = mat4Rotate(0, 45)
     matrixWorldTranslate = mat4Translate(-player.position[0], 0, -player.position[2])
-    matrixWorld = mat4Mul(matrixWorldTranslate, matrixWorldRotate)
+    matrixWorld = mat4Mul(matrixWorldRotate, matrixWorldTranslate)
 }

@@ -44,6 +44,35 @@ function mat4Mul(m1, m2) {
     return result
 }
 
+function mat4SubMat(m, index) {
+    let result = []
+
+    for (let i = 0; i < 16; i++) {
+        if (i % 4 != index % 4 && Math.floor(i / 4) != Math.floor(index / 4)) {
+            result.push(m[i])
+        }
+    }
+
+    return result
+}
+
+function mat3Det(m) {
+    return m[0] * (m[4] * m[8] - m[5] * m[7]) - m[1] * (m[3] * m[8] - m[5] * m[6]) + m[2] * (m[3] * m[7] - m[4] * m[6])
+}
+
+function mat4Inv(m) {
+    let result = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    let adj = [1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, -1, -1, 1, -1, 1]
+    let mtr = [m[0], m[4], m[8], m[12], m[1], m[5], m[9], m[13], m[2], m[6], m[10], m[14], m[3], m[7], m[11], m[15]]
+    let detM = m[0] * mat3Det(mat4SubMat(m, 0)) - m[1] * mat3Det(mat4SubMat(m, 1)) + m[2] * mat3Det(mat4SubMat(m, 2)) - m[3] * mat3Det(mat4SubMat(m, 3))
+
+    for (let i = 0; i < 16; i++) {
+        result[i] = mat3Det(mat4SubMat(mtr, i)) / detM * adj[i]
+    }
+
+    return result
+}
+
 function mat4Rotate(axis, angle) {
     let rad = angle * Math.PI / 180
     let c = Math.cos(rad)
@@ -91,12 +120,12 @@ function mat4Scale(x, y, z) {
     ]
 }
 
-function mat4vec4Mul(mat, vec) {
+function mat4vec4Mul(m, v) {
     return [
-        mat[0] * vec[0] + mat[1] * vec[1] + mat[2] * vec[2] + mat[3] * vec[3],
-        mat[4] * vec[0] + mat[5] * vec[1] + mat[6] * vec[2] + mat[7] * vec[3],
-        mat[8] * vec[0] + mat[9] * vec[1] + mat[10] * vec[2] + mat[11] * vec[3],
-        mat[12] * vec[0] + mat[13] * vec[1] + mat[14] * vec[2] + mat[15] * vec[3]
+        m[0] * v[0] + m[1] * v[1] + m[2] * v[2] + m[3] * v[3],
+        m[4] * v[0] + m[5] * v[1] + m[6] * v[2] + m[7] * v[3],
+        m[8] * v[0] + m[9] * v[1] + m[10] * v[2] + m[11] * v[3],
+        m[12] * v[0] + m[13] * v[1] + m[14] * v[2] + m[15] * v[3]
     ]
 }
 
